@@ -6,13 +6,17 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @topics.each do |topic| %>
   <tr>
     <td><%= link_to topic.title, topic %></td>
-    <td><%= pluralize(topic.votes.length, "vote") %></td>
-    <td><%= button_to '+1', votes_path(topic_id: topic.id),method: :post %></td>
+    <div>
+      <td id="topic_counts-<%=topic.id%>"><%= pluralize(topic.votes.length, "vote") %></td>
+    </div>
+    <td><%= button_to '+1', votes_path(topic_id: topic.id),method: :post, remote: :true %></td>
+    <td><%= button_to '-1', vote_path(topic.id), method: :delete, remote: :true  %></td>
     <td><%= link_to 'delete', topic, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

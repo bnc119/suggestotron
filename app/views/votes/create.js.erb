@@ -1,0 +1,1 @@
+$("#topic_counts-<%=@topic.id%>").html( '<%= pluralize(@topic.votes.length, "vote") %>' )
